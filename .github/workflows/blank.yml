@@ -1,0 +1,26 @@
+name: Version Tag
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-version:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Git checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: '0'
+        
+    - name: Read VERSION file
+      id: getversion
+      run: echo "::set-output name=version::$(cat VERSION)"
+    
+    - name: git
+      run: |
+        git tag -v${{ steps.getversion.outputs.version }}
+        git push origin -v${{ steps.getversion.outputs.version }}
