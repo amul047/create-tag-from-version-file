@@ -22,5 +22,5 @@ jobs:
     
     - name: git
       run: |
-        git tag -v${{ steps.getversion.outputs.version }}
-        git push origin -v${{ steps.getversion.outputs.version }}
+        git tag v${{ steps.getversion.outputs.version }}
+        git push origin v${{ steps.getversion.outputs.version }}
